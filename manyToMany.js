@@ -81,7 +81,7 @@ const run = async () => {
        include: [{
         model: Cars,
         through: {
-            attributes: ['userId', 'carId'],
+            attributes: [ 'carId'],
            
           }
         //attributes: ['make'],
