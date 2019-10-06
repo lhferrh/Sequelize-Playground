@@ -82,26 +82,27 @@ const run = async () => {
    ))
 
    for( let i = 0 ; i < 5 ; i++ ){
-       Favorites.create({
+       await Favorites.create({
            userId: getRandomInt(1 , max),
            carId: getRandomInt(1, max)
        })
    }
 
 
-   const cars = await Users.findAll({
+   const users = await Users.findAll({
        include: {
-        model: Favorites,
-        attributes: [ 'userId', 'carId'],
-    },
+            model: Favorites,
+            attributes: [ 'userId', 'carId'],
+            //separate:true
+        },
     raw: true
    });
    console.log('Favorites cars for all users')
-   console.log(cars);
+   console.log(users);
 
    
 
-   const users = await Cars.findAll({
+   const cars = await Cars.findAll({
         include: {
         model: Favorites,
         attributes: [ 'userId', 'carId'],
@@ -111,7 +112,7 @@ const run = async () => {
 
     
     console.log('Users wiht its favorites cars')
-    console.log(users);
+    console.log(cars);
 
 
 } 

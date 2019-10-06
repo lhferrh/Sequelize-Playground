@@ -70,9 +70,9 @@ const run = async () => {
    ))
 
    for( let i = 0 ; i < 5 ; i++ ){
-       Favorites.create({
+       await Favorites.create({
            userId: getRandomInt(1 , max),
-           carId: getRandomInt(0, max)
+           carId: getRandomInt(1, max)
        })
    }
 
