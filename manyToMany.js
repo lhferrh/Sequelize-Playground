@@ -60,33 +60,31 @@ const intiDataBase = async () => {
 const run = async () => {
     const max = 3;
     await intiDataBase();
-
+    console.log('asdds')
     await Promise.all( DATA.users.map( async elem=> 
-         Users.create({...elem})
+         await Users.create({...elem})
     ))
 
     await Promise.all( DATA.cars.map( async elem => 
-        Cars.create({...elem})
+        await Cars.create({...elem})
    ))
 
-   for( let i = 0 ; i < 5 ; i++ ){
+   for( let i = 0 ; i < 2 ; i++ ){
        await Favorites.create({
            userId: getRandomInt(1 , max),
            carId: getRandomInt(1, max)
        })
    }
 
-
    const car = await Users.findAll({
        include: [{
         model: Cars,
         through: {
-            attributes: [ 'carId'],
-           
+            attributes: ['carId'],
           }
         //attributes: ['make'],
         }],
-        raw: true
+        raw: false
    });
 
    const favorites = await Favorites.findAll({
@@ -97,8 +95,7 @@ const run = async () => {
     });
 
    console.log(car);
-   console.log(favorites);
-
+   console.log(favorites);    
 } 
   
 run();

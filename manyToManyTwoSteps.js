@@ -95,7 +95,7 @@ const run = async () => {
             attributes: [ 'userId', 'carId'],
             //separate:true
         },
-    raw: true
+      raw: true
    });
    console.log('Favorites cars for all users')
    console.log(users);
@@ -104,8 +104,8 @@ const run = async () => {
 
    const cars = await Cars.findAll({
         include: {
-        model: Favorites,
-        attributes: [ 'userId', 'carId'],
+          model: Favorites,
+          attributes: [ 'userId', 'carId'],
         },
         raw: true
     });
